@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Visor interactivo de proyectos y obras municipales de la ciudad de Rosario." />
+  <title>Obras y Proyectos — Municipalidad de Rosario</title>
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Tooltip de Leaflet personalizado -->
+  <style>
+    .custom-tooltip {
+      background: rgba(26, 26, 24, .88) !important;
+      border: none !important;
+      border-radius: 6px !important;
+      color: #fff !important;
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 12.5px !important;
+      font-weight: 500 !important;
+      padding: 5px 10px !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,.2) !important;
+      white-space: nowrap;
+    }
+    .custom-tooltip::before { display: none !important; }
+  </style>
+</head>
+
+<body>
+  <div class="app-wrapper">
+
+    <!-- ── HEADER ── -->
+    <header class="app-header" role="banner">
+      <div class="header-brand">
+        <!-- Escudo simplificado institucional -->
+        <div class="header-escudo" aria-hidden="true">R</div>
+        <div class="header-title">
+          <strong>Obras y Proyectos</strong>
+          <span>Municipalidad de Rosario</span>
+        </div>
+      </div>
+
+      <div class="header-counter">
+        <span id="results-count" aria-live="polite" aria-atomic="true">Cargando…</span>
+        <button
+          class="btn-toggle-sidebar"
+          id="toggle-sidebar"
+          aria-label="Mostrar u ocultar filtros"
+          aria-expanded="false"
+          aria-controls="sidebar"
+        >☰</button>
+      </div>
+    </header>
+
+    <!-- ── CUERPO ── -->
+    <div class="app-body">
+
+      <!-- ── SIDEBAR ── -->
+      <aside class="sidebar" id="sidebar" aria-label="Panel de filtros">
+
+        <!-- Filtros por estado -->
+        <section class="sidebar-section" aria-labelledby="label-estado">
+          <div class="section-label" id="label-estado">Filtrar por Estado</div>
+
+          <div class="filter-group" role="group" aria-label="Seleccionar estados">
+            <button
+              class="filter-btn-all active"
+              id="filter-all"
+              aria-pressed="true"
+              title="Mostrar todos los estados"
+            >
+              <span>Todos los estados</span>
+              <span class="filter-btn-count">—</span>
+            </button>
+
+            <button
+              class="filter-btn"
+              data-estado="Planificado"
+              aria-pressed="false"
+              title="Filtrar: Planificado"
+            >
+              <span class="filter-dot planificado" aria-hidden="true"></span>
+              Planificado
+              <span class="filter-btn-count">—</span>
+            </button>
+
+            <button
+              class="filter-btn"
+              data-estado="En Ejecución"
+              aria-pressed="false"
+              title="Filtrar: En Ejecución"
+            >
+              <span class="filter-dot ejecucion" aria-hidden="true"></span>
+              En Ejecución
+              <span class="filter-btn-count">—</span>
+            </button>
+
+            <button
+              class="filter-btn"
+              data-estado="Completado"
+              aria-pressed="false"
+              title="Filtrar: Completado"
+            >
+              <span class="filter-dot completado" aria-hidden="true"></span>
+              Completado
+              <span class="filter-btn-count">—</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Filtro por distrito -->
+        <section class="sidebar-section" aria-labelledby="label-distrito">
+          <div class="section-label" id="label-distrito">Filtrar por Distrito</div>
+          <label for="filter-distrito" class="sr-only">Seleccionar distrito</label>
+          <select id="filter-distrito" class="filter-select" aria-label="Seleccionar distrito">
+            <option value="todos">Todos los distritos</option>
+            <!-- Las opciones se inyectan dinámicamente desde JS -->
+          </select>
+        </section>
+
+        <!-- Leyenda -->
+        <section class="sidebar-section" aria-labelledby="label-leyenda">
+          <div class="section-label" id="label-leyenda">Leyenda</div>
+          <div class="legend" role="list">
+            <div class="legend-item" role="listitem">
+              <div class="legend-marker planificado" aria-hidden="true"></div>
+              <span>Planificado</span>
+            </div>
+            <div class="legend-item" role="listitem">
+              <div class="legend-marker ejecucion" aria-hidden="true"></div>
+              <span>En Ejecución</span>
+            </div>
+            <div class="legend-item" role="listitem">
+              <div class="legend-marker completado" aria-hidden="true"></div>
+              <span>Completado</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Lista de proyectos -->
+        <section
+          class="sidebar-section"
+          style="padding: 0; flex: 1; overflow-y: auto;"
+          aria-labelledby="label-lista"
+        >
+          <div class="section-label" id="label-lista" style="padding: 16px 20px 0;">
+            Proyectos
+          </div>
+          <div
+            id="project-list"
+            class="project-list"
+            role="list"
+            aria-label="Lista de proyectos filtrados"
+          ></div>
+          <div id="empty-state" class="empty-state" role="status" aria-live="polite">
+            <div class="empty-state-icon" aria-hidden="true">🗺️</div>
+            <p>No hay proyectos que coincidan<br>con los filtros seleccionados.</p>
+          </div>
+        </section>
+
+      </aside>
+
+      <!-- ── OVERLAY MOBILE ── -->
+      <div
+        class="sidebar-overlay"
+        id="sidebar-overlay"
+        aria-hidden="true"
+        role="presentation"
+      ></div>
+
+      <!-- ── MAPA ── -->
+      <main class="map-container" aria-label="Mapa interactivo de obras">
+        <div id="map" role="application" aria-label="Mapa de proyectos municipales de Rosario"></div>
+
+        <!-- Botón reset zoom -->
+        <button class="map-reset-btn" id="reset-zoom" title="Volver a la vista inicial de Rosario">
+          <span aria-hidden="true">⌖</span> Rosario
+        </button>
+      </main>
+
+    </div><!-- /.app-body -->
+  </div><!-- /.app-wrapper -->
+
+  <!-- Clase accesibilidad para screen readers -->
+  <style>.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }</style>
+
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN2GqaE="
+    crossorigin=""
+  ></script>
+
+  <!-- Aplicación -->
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-60.6395, -32.9472] },
+      "properties": {
+        "proyecto": "Remodelación Peatonal Córdoba",
+        "estado": "En Ejecución",
+        "distrito": "Centro",
+        "tipo": "Vial",
+        "descripcion": "Renovación integral del corredor peatonal con nuevo pavimento, arbolado y mobiliario urbano.",
+        "inicio": "Marzo 2024",
+        "fin_estimado": "Diciembre 2024"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-60.6510, -32.9380] },
+      "properties": {
+        "proyecto": "Ciclovía Bv. Oroño Norte",
+        "estado": "Completado",
+        "distrito": "Centro",
+        "tipo": "Movilidad",
+        "descripcion": "Extensión de la red de ciclovías sobre el boulevard, con señalización y balizamiento LED.",
+        "inicio": "Enero 2023",
+        "fin_estimado": "Agosto 2023"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-60.6620, -32.9120] },
+      "properties": {
+        "proyecto": "Centro Comunitario Ludueña",
+        "estado": "Planificado",
+        "distrito": "Noroeste",
+        "tipo": "Equipamiento Social",
+        "descripcion": "Construcción de un nuevo centro comunitario con SUM, salón de usos múltiples y área deportiva.",
+        "inicio": "Febrero 2025",
+        "fin_estimado": "Noviembre 2025"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-60.6780, -32.9300] },
+      "properties": {
+        "proyecto": "Parque Lineal Saladillo Oeste",
+        "estado": "En Ejecución",
+        "distrito": "Oeste",
+        "tipo": "Espacios Verdes",
+        "descripcion": "Recuperación del margen del arroyo Saladillo como parque lineal con senderos y área de juegos.",
+        "inicio": "Septiembre 2023",
+        "fin_estimado": "Marzo 2025"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-60.6650, -33.0050] },
+      "properties": {
+        "proyecto": "Planta de Tratamiento Sur",
+        "estado": "Planificado",
+        "distrito": "Sur",
+        "tipo": "Infraestructura",
+        "descripcion": "Ampliación de la capacidad de la planta de tratamiento de efluentes cloacales.",
+        "inicio": "Mayo 2025",
+        "fin_estimado": "Diciembre 2026"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-60.6900, -32.9650] },
+      "properties": {
+        "proyecto": "Pavimentación Av. Provincias Unidas",
+        "estado": "Completado",
+        "distrito": "Suroeste",
+        "tipo": "Vial",
+        "descripcion": "Repavimentación de 4 km con asfalto reciclado y mejoras de desagüe pluvial.",
+        "inicio": "Abril 2023",
+        "fin_estimado": "Octubre 2023"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-60.6300, -32.9100] },
+      "properties": {
+        "proyecto": "Escuela Primaria N° 147 - Ampliación",
+        "estado": "En Ejecución",
+        "distrito": "Norte",
+        "tipo": "Educación",
+        "descripcion": "Construcción de 6 nuevas aulas, biblioteca y laboratorio de informática.",
+        "inicio": "Julio 2024",
+        "fin_estimado": "Marzo 2025"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-60.6450, -32.9250] },
+      "properties": {
+        "proyecto": "Alumbrado LED Centro Histórico",
+        "estado": "Completado",
+        "distrito": "Centro",
+        "tipo": "Infraestructura",
+        "descripcion": "Reemplazo de 1.200 luminarias de sodio por tecnología LED de bajo consumo.",
+        "inicio": "Junio 2022",
+        "fin_estimado": "Febrero 2023"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-60.6750, -32.9500] },
+      "properties": {
+        "proyecto": "Centro de Salud Barrio Triángulo",
+        "estado": "Planificado",
+        "distrito": "Oeste",
+        "tipo": "Salud",
+        "descripcion": "Nuevo CAPS con atención de clínica, pediatría, odontología y salud mental.",
+        "inicio": "Marzo 2025",
+        "fin_estimado": "Octubre 2025"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-60.6200, -32.9850] },
+      "properties": {
+        "proyecto": "Desagüe Pluvial Av. Polonia",
+        "estado": "En Ejecución",
+        "distrito": "Sur",
+        "tipo": "Infraestructura",
+        "descripcion": "Construcción de colectora pluvial para mitigar anegamientos en zona sur.",
+        "inicio": "Octubre 2024",
+        "fin_estimado": "Junio 2025"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-60.6580, -32.9200] },
+      "properties": {
+        "proyecto": "Plaza del Bicentenario",
+        "estado": "Completado",
+        "distrito": "Norte",
+        "tipo": "Espacios Verdes",
+        "descripcion": "Renovación completa de la plaza con anfiteatro, juegos inclusivos y senderos accesibles.",
+        "inicio": "Enero 2024",
+        "fin_estimado": "Julio 2024"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-60.6840, -32.9150] },
+      "properties": {
+        "proyecto": "Polo Industrial Noroeste",
+        "estado": "Planificado",
+        "distrito": "Noroeste",
+        "tipo": "Desarrollo Económico",
+        "descripcion": "Habilitación de lotes industriales con infraestructura de servicios completa.",
+        "inicio": "Agosto 2025",
+        "fin_estimado": "Agosto 2027"
+      }
+    }
+  ]
+}
